@@ -198,7 +198,7 @@ const Badge = styled.div`
   }
 `;
 
-const HOTMART_LINK = "https://pay.hotmart.com/C104216467S";
+const HOTMART_LINK = "https://pay.hotmart.com/C104216467S?checkoutMode=10";
 
 export const FinalOffer = () => {
   return (

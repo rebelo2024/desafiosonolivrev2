@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useState, useEffect } from 'react';
 
-const HOTMART_LINK = "https://pay.hotmart.com/C104216467S";
+const HOTMART_LINK = "https://pay.hotmart.com/C104216467S?checkoutMode=10";
 
 const Wrapper = styled(motion.div)`
   position: fixed;
@@ -80,42 +80,42 @@ const ActionButton = styled.div`
 `;
 
 const StickyCTA = () => {
-    const [isVisible, setIsVisible] = useState(false);
+  const [isVisible, setIsVisible] = useState(false);
 
-    useEffect(() => {
-        const handleScroll = () => {
-            // Show button after scrolling past 500px (approx after hero text)
-            if (window.scrollY > 500) {
-                setIsVisible(true);
-            } else {
-                setIsVisible(false);
-            }
-        };
+  useEffect(() => {
+    const handleScroll = () => {
+      // Show button after scrolling past 500px (approx after hero text)
+      if (window.scrollY > 500) {
+        setIsVisible(true);
+      } else {
+        setIsVisible(false);
+      }
+    };
 
-        window.addEventListener('scroll', handleScroll, { passive: true });
-        return () => window.removeEventListener('scroll', handleScroll);
-    }, []);
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
-    return (
-        <AnimatePresence>
-            {isVisible && (
-                <Wrapper
-                    initial={{ y: 100, opacity: 0 }}
-                    animate={{ y: 0, opacity: 1 }}
-                    exit={{ y: 100, opacity: 0 }}
-                    transition={{ type: "spring", stiffness: 260, damping: 20 }}
-                >
-                    <ButtonContainer href={HOTMART_LINK} target="_blank" rel="noopener noreferrer">
-                        <TextContent>
-                            <OfferText>Oferta Limitada</OfferText>
-                            <PriceText>R$ 19,90 <span>-87%</span></PriceText>
-                        </TextContent>
-                        <ActionButton>QUERO AGORA</ActionButton>
-                    </ButtonContainer>
-                </Wrapper>
-            )}
-        </AnimatePresence>
-    );
+  return (
+    <AnimatePresence>
+      {isVisible && (
+        <Wrapper
+          initial={{ y: 100, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          exit={{ y: 100, opacity: 0 }}
+          transition={{ type: "spring", stiffness: 260, damping: 20 }}
+        >
+          <ButtonContainer href={HOTMART_LINK} target="_blank" rel="noopener noreferrer">
+            <TextContent>
+              <OfferText>Oferta Limitada</OfferText>
+              <PriceText>R$ 19,90 <span>-87%</span></PriceText>
+            </TextContent>
+            <ActionButton>QUERO AGORA</ActionButton>
+          </ButtonContainer>
+        </Wrapper>
+      )}
+    </AnimatePresence>
+  );
 };
 
 export default StickyCTA;

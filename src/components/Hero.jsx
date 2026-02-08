@@ -21,7 +21,8 @@ const BackgroundImage = styled.img`
   object-fit: cover;
   object-position: center top;
   z-index: 1;
-  opacity: 0.9;
+  /* Removed opacity: 0.9 for sharpness */
+  filter: contrast(1.05) saturate(1.05); /* Subtle pop */
 `;
 
 const Overlay = styled.div`
@@ -33,9 +34,10 @@ const Overlay = styled.div`
   z-index: 2;
   background: linear-gradient(
     180deg,
-    rgba(250, 250, 248, 0.1) 0%,   /* Barely visible top */
-    rgba(250, 250, 248, 0.4) 60%,  /* Much lighter middle */
-    rgba(250, 250, 248, 0.9) 100%  /* Solid blend only at very bottom */
+    rgba(250, 250, 248, 0) 0%,      /* Completely clear top for face */
+    rgba(250, 250, 248, 0.2) 30%,   /* Very subtle transition */
+    rgba(250, 250, 248, 0.7) 60%,   /* Text area background */
+    rgba(250, 250, 248, 1) 100%     /* Solid blend at bottom */
   );
 `;
 
@@ -80,11 +82,11 @@ const HeroTitle = styled.h1`
   letter-spacing: -0.02em;
   
   strong {
-    color: ${({ theme }) => theme.colors.primaryDark}; /* Deeper purple for contrast */
-    font-weight: 700;
+    color: #4A2C76; /* Much deeper purple for high contrast */
+    font-weight: 800; /* Bolder */
     font-style: italic;
     display: block;
-    text-shadow: 0px 1px 0px rgba(255,255,255,0.4); /* Subtle backlight */
+    text-shadow: 0px 2px 4px rgba(255,255,255,0.8); /* Stronger backlight */
   }
 `;
 
@@ -92,8 +94,10 @@ const HeroSubtitle = styled.p`
   font-family: ${({ theme }) => theme.fonts.body};
   font-size: 1.125rem;
   line-height: 1.6;
-  color: ${({ theme }) => theme.colors.textLight};
+  color: ${({ theme }) => theme.colors.text}; /* Darker than textLight */
+  font-weight: 500;
   max-width: 600px;
+  text-shadow: 0 1px 2px rgba(250, 250, 248, 0.8);
 `;
 
 const ScrollIndicator = styled(motion.div)`
