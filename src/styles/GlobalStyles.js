@@ -15,10 +15,10 @@ export const GlobalStyles = createGlobalStyle`
 
   body {
     font-family: ${({ theme }) => theme.fonts.body};
-    font-size: ${({ theme }) => theme.fontSizes.body};
-    color: ${({ theme }) => theme.colors.softBlack};
-    background-color: ${({ theme }) => theme.colors.white};
-    line-height: 1.6;
+    font-size: ${({ theme }) => theme.typography.body.size};
+    color: ${({ theme }) => theme.colors.text};
+    background-color: ${({ theme }) => theme.colors.background};
+    line-height: ${({ theme }) => theme.typography.body.lineHeight};
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }

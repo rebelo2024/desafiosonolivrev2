@@ -3,8 +3,8 @@ import { motion } from 'framer-motion';
 import Reveal from './Reveal';
 
 const Section = styled.section`
-  background: ${({ theme }) => theme.colors.lightGray};
   padding: ${({ theme }) => theme.spacing.section} 0;
+  background-color: ${({ theme }) => theme.colors.background};
 `;
 
 const Container = styled.div`
@@ -13,250 +13,134 @@ const Container = styled.div`
   padding: ${({ theme }) => theme.container.padding};
 `;
 
-const SectionTitle = styled.h2`
+const SectionHeader = styled.div`
   text-align: center;
-  margin-bottom: ${({ theme }) => theme.spacing.xl};
-  color: ${({ theme }) => theme.colors.softBlack};
-  font-size: 2.2rem;
+  margin-bottom: ${({ theme }) => theme.spacing.xxl};
+`;
 
-  span {
-    color: ${({ theme }) => theme.colors.primary};
+const Title = styled.h2`
+  font-family: ${({ theme }) => theme.fonts.heading};
+  font-size: ${({ theme }) => theme.typography.h2.size};
+  color: ${({ theme }) => theme.colors.text}; // Deep Navy
+  margin-bottom: ${({ theme }) => theme.spacing.md};
+
+  strong {
+    color: ${({ theme }) => theme.colors.primary}; // Royal Lilac
+    font-weight: 700;
   }
 `;
 
-const ContentGrid = styled.div`
+const Subtitle = styled.p`
+  font-size: 1.125rem;
+  color: ${({ theme }) => theme.colors.textLight}; // Muted Slate
+  max-width: 700px;
+  margin: 0 auto;
+`;
+
+const Grid = styled.div`
   display: grid;
-  grid-template-columns: 1.2fr 1fr;
-  gap: ${({ theme }) => theme.spacing.xl};
-  align-items: start;
-
-  @media (max-width: ${({ theme }) => theme.breakpoints.desktop}) {
-    grid-template-columns: 1fr;
-  }
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: ${({ theme }) => theme.spacing.lg};
 `;
 
-const MethodCard = styled(motion.div)`
+const Card = styled(motion.div)`
   background: ${({ theme }) => theme.colors.white};
-  border-radius: ${({ theme }) => theme.borderRadius.large};
   padding: ${({ theme }) => theme.spacing.xl};
-  box-shadow: ${({ theme }) => theme.shadows.card};
-  border: 1px solid rgba(155, 126, 189, 0.1);
-  transition: box-shadow 0.3s ease;
+  border-radius: ${({ theme }) => theme.borderRadius.large}; // 24px
+  box-shadow: ${({ theme }) => theme.shadows.small}; // Soft shadow
+  transition: all ${({ theme }) => theme.transitions.normal};
+  border: 1px solid rgba(0,0,0,0.03);
 
   &:hover {
-    box-shadow: ${({ theme }) => theme.shadows.glass};
+    transform: translateY(-5px);
+    box-shadow: ${({ theme }) => theme.shadows.medium};
     border-color: ${({ theme }) => theme.colors.primaryLight};
   }
 `;
 
-const MethodTitle = styled.h3`
-  display: flex;
-  align-items: center;
-  gap: ${({ theme }) => theme.spacing.sm};
-  color: ${({ theme }) => theme.colors.primaryDark};
-  margin-bottom: ${({ theme }) => theme.spacing.md};
-  font-size: 1.4rem;
-`;
-
-const MethodList = styled.ul`
-  display: grid;
-  gap: ${({ theme }) => theme.spacing.sm};
-  list-style: none;
-  padding: 0;
-`;
-
-const MethodItem = styled(motion.li)`
-  display: flex;
-  align-items: center;
-  gap: ${({ theme }) => theme.spacing.sm};
-  font-size: 1rem;
-  color: ${({ theme }) => theme.colors.softBlack};
-  line-height: 1.5;
-  padding: 12px;
-  background: linear-gradient(to right, rgba(139, 92, 246, 0.03), transparent);
-  border-radius: 8px;
-  border-left: 3px solid transparent;
-  transition: all 0.2s ease;
-
-  &:hover {
-    background: rgba(139, 92, 246, 0.08);
-    border-left-color: ${({ theme }) => theme.colors.primary};
-    transform: translateX(4px);
-  }
-
-  &::before {
-    content: '✨'; // More premium icon
-    font-size: 1.1rem;
-  }
-`;
-
-const BonusStack = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: ${({ theme }) => theme.spacing.md};
-`;
-
-const BonusCard = styled(motion.div)`
-  background: ${({ theme }) => theme.colors.white};
-  border-radius: ${({ theme }) => theme.borderRadius.large};
-  padding: ${({ theme }) => theme.spacing.lg};
-  box-shadow: ${({ theme }) => theme.shadows.card};
-  border: 2px solid ${({ theme }) => theme.colors.primaryLight};
-  position: relative;
-  overflow: hidden;
-`;
-
-const BonusBadge = styled.span`
-  position: absolute;
-  top: 15px;
-  right: -30px;
-  background: ${({ theme }) => theme.colors.success};
-  color: ${({ theme }) => theme.colors.white};
-  padding: 5px 40px;
-  font-size: 0.75rem;
+const ModuleNumber = styled.div`
+  font-family: ${({ theme }) => theme.fonts.heading};
+  font-size: 5rem; /* Much larger */
   font-weight: 700;
-  transform: rotate(35deg);
+  color: ${({ theme }) => theme.colors.primaryLight}; /* Softer lilac */
+  opacity: 0.3;
+  line-height: 0.6;
+  margin-bottom: 10px;
+  letter-spacing: -2px;
 `;
 
-const BonusIcon = styled.div`
-  width: 50px;
-  height: 50px;
-  background: ${({ theme }) => theme.colors.primaryLight};
-  border-radius: ${({ theme }) => theme.borderRadius.medium};
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.5rem;
+const CardTitle = styled.h3`
+  font-family: ${({ theme }) => theme.fonts.heading};
+  font-size: 1.75rem;
   margin-bottom: ${({ theme }) => theme.spacing.sm};
+  color: ${({ theme }) => theme.colors.text};
+  position: relative;
+  z-index: 2;
 `;
 
-const BonusTitle = styled.h4`
-  color: ${({ theme }) => theme.colors.softBlack};
-  font-size: 1.1rem;
-  margin-bottom: ${({ theme }) => theme.spacing.xs};
-`;
-
-const BonusDescription = styled.p`
-  color: ${({ theme }) => theme.colors.mediumGray};
+const CardText = styled.p`
+  color: ${({ theme }) => theme.colors.textLight};
   font-size: 0.95rem;
-  margin-bottom: ${({ theme }) => theme.spacing.sm};
+  line-height: 1.6;
 `;
 
-const BonusValue = styled.div`
-  display: flex;
-  align-items: center;
-  gap: ${({ theme }) => theme.spacing.xs};
-  
-  span.old {
-    text-decoration: line-through;
-    color: ${({ theme }) => theme.colors.mediumGray};
-    font-size: 0.9rem;
-  }
-  
-  span.free {
-    color: ${({ theme }) => theme.colors.success};
-    font-weight: 700;
-    font-size: 1.1rem;
-  }
-`;
-
-const methodModules = [
-  'Módulo 1: O Ambiente de Sono Perfeito',
-  'Módulo 2: A Rotina que Funciona',
-  'Módulo 3: O Ritual de Sono',
-  'Módulo 4: O Método na Prática',
-  'Módulo 5: Sonecas Tranquilas',
-  'Módulo 6: Regressão de Sono e Saltos'
-];
-
-const bonuses = [
+const modules = [
   {
-    icon: '👶',
-    title: 'Guia Rápido: Sinais de Sono do Bebê',
-    description: 'Aprenda a identificar os sinais que seu bebê dá quando está com sono e nunca mais perca o momento ideal.',
-    value: 'R$ 27,00'
+    number: "01",
+    title: "Entendendo o Sono",
+    description: "Descubra como funciona a fisiologia do sono do bebê e por que ele acorda tanto."
   },
   {
-    icon: '🛏️',
-    title: 'Checklist: Preparando o Quarto do Bebê',
-    description: 'Lista completa de itens essenciais para criar o ambiente perfeito para o sono do seu bebê.',
-    value: 'R$ 27,00'
+    number: "02",
+    title: "O Ambiente Perfeito",
+    description: "Prepare o quarto e a rotina para induzir o sono profundo naturalmente."
+  },
+  {
+    number: "03",
+    title: "Associações de Sono",
+    description: "Como retirar gentilmente o hábito de nanar no peito ou colo sem traumas."
+  },
+  {
+    number: "04",
+    title: "Sonecas Restauradoras",
+    description: "Acerte o ritmo do dia para garantir noites tranquilas e sem brigas."
+  },
+  {
+    number: "05",
+    title: "O Desmame Noturno",
+    description: "Estratégias para reduzir as mamadas da madrugada com amor e conexão."
+  },
+  {
+    number: "06",
+    title: "Saltos e Regressões",
+    description: "Saiba lidar com as fases difíceis sem perder todo o progresso conquistado."
   }
 ];
-
-// Animation variants
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.1
-    }
-  }
-};
-
-const itemVariants = {
-  hidden: { opacity: 0, x: -20 },
-  visible: { opacity: 1, x: 0 }
-};
 
 export const WhatYouGet = () => {
   return (
     <Section id="whatyouget">
       <Container>
         <Reveal>
-          <SectionTitle>
-            O Que Você Vai <span>Receber</span>
-          </SectionTitle>
+          <SectionHeader>
+            <Title>O Que Você Vai <strong>Receber</strong></Title>
+            <Subtitle>
+              Um passo a passo completo, do zero ao sono noturno, respeitando o tempo do seu bebê.
+            </Subtitle>
+          </SectionHeader>
         </Reveal>
 
-        <ContentGrid>
-          <Reveal>
-            <MethodCard
-              whileHover={{ y: -5 }}
-              transition={{ type: "spring", stiffness: 300 }}
-            >
-              <MethodTitle>
-                Acesso Imediato ao Curso Completo:
-              </MethodTitle>
-              <MethodList
-                as={motion.ul}
-                variants={containerVariants}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true }}
-              >
-                {methodModules.map((item, index) => (
-                  <MethodItem key={index} variants={itemVariants}>
-                    {item}
-                  </MethodItem>
-                ))}
-              </MethodList>
-            </MethodCard>
-          </Reveal>
-
-          <BonusStack>
-            <div style={{ paddingBottom: '1rem', fontWeight: 'bold', color: '#5b21b6' }}>
-              + BÔNUS EXCLUSIVOS
-            </div>
-            {bonuses.map((bonus, index) => (
-              <Reveal key={index} delay={0.1 * (index + 1)}>
-                <BonusCard
-                  whileHover={{ scale: 1.02 }}
-                >
-                  <BonusBadge>GRÁTIS</BonusBadge>
-                  <BonusIcon>{bonus.icon}</BonusIcon>
-                  <BonusTitle>{bonus.title}</BonusTitle>
-                  <BonusDescription>{bonus.description}</BonusDescription>
-                  <BonusValue>
-                    <span className="old">De {bonus.value}</span>
-                    <span className="free">GRÁTIS HOJE</span>
-                  </BonusValue>
-                </BonusCard>
-              </Reveal>
-            ))}
-          </BonusStack>
-        </ContentGrid>
+        <Grid>
+          {modules.map((module, index) => (
+            <Reveal key={index} delay={index * 0.1}>
+              <Card whileHover={{ scale: 1.02 }}>
+                <ModuleNumber>{module.number}</ModuleNumber>
+                <CardTitle>{module.title}</CardTitle>
+                <CardText>{module.description}</CardText>
+              </Card>
+            </Reveal>
+          ))}
+        </Grid>
       </Container>
     </Section>
   );
